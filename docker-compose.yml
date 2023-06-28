@@ -6,6 +6,8 @@ services:
       - 8080:8080
     volumes:
       - ./target/IPWA02-Netz-1.0-SNAPSHOT.war:/usr/local/tomcat/webapps/netz.war
+    networks:
+      - mynetwork
 
   database:
     image: postgres:15.1-bullseye
@@ -17,6 +19,8 @@ services:
       replicas: 1
       restart_policy:
         condition: on-failure
+    networks:
+      - mynetwork
 
   pgadmin:
     image: dpage/pgadmin4:latest
@@ -32,6 +36,11 @@ services:
       replicas: 1
       restart_policy:
         condition: on-failure
+    networks:
+      - mynetwork
 
 volumes:
   pgadmin:
+
+networks:
+  mynetwork:
