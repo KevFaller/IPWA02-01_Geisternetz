@@ -8,6 +8,7 @@
 <body>
 <h1><%= "Super Bayern - Mia San Mia" %></h1>
 <br/>
-<a href="hello-servlet">Hello Servlet</a>  /*Link zum Java Ordner und HalloServlet*/
+<a href="hello-servlet">Hello Servlet</a>
+<a href="login">Login</a>
 </body>
 </html>
