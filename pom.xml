@@ -9,7 +9,7 @@
   <version>1.0-SNAPSHOT</version>
   <name>IPWA02-Netz</name>
   <packaging>war</packaging>
-<!-- http://localhost:8080/IPWA02-Netz-1.0-SNAPSHOT/ -->
+<!-- http://localhost:8080/netz -->
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.target>11</maven.compiler.target>
