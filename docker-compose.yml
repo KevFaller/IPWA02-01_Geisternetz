@@ -5,4 +5,4 @@ services:
     ports:
       - 8080:8080
     volumes:
-      - ./target/IPWA02-Netz-1.0-SNAPSHOT.war:/usr/local/tomcat/webapps/kevin.war
+      - ./target/IPWA02-Netz-1.0-SNAPSHOT.war:/usr/local/tomcat/webapps/netz.war
