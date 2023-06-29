@@ -41,6 +41,9 @@ public class login extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
         dispatcher.forward(request, response);
 
+        //conn Test
+        ConnectionDB.createConnection();
+
     }
     public void destroy() {
     }
