@@ -10,7 +10,7 @@
 </head>
     <body>
         <h1>Login Seite</h1>
-        <form>
+        <form method="post" action="login">
             <label for="username">Username</label><br>
             <input type="text" id="username" name="username"><br>
             <label for="password">Password</label><br>
