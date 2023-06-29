@@ -1,6 +1,8 @@
 package com.example.ipwa02netz;
 
 import java.io.*;
+import java.sql.SQLException;
+
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
@@ -20,6 +22,8 @@ public class HelloServlet extends HttpServlet {
         out.println("<html><body>");
         out.println("<h1>" + message + "</h1>");
         out.println("</body></html>");
+
+
     }
 
     public void destroy() {
