@@ -6,7 +6,7 @@
   <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-<h1><%= "Super Bayern - Mia San Mia" %></h1>
+<h1><%= "Ich bin die Startseite" %></h1>
 <br/>
 <a href="hello-servlet">Hello Servlet</a>
 <a href="login">Login</a>

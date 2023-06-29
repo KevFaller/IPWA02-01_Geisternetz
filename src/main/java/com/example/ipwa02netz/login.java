@@ -1,32 +1,39 @@
 package com.example.ipwa02netz;
 
 import java.io.*;
+
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import jakarta.servlet.ServletException;
 
-@WebServlet(name = "login", value = "/login")
+
+@WebServlet("/login")
 public class login extends HttpServlet {
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        // Hier wird der POST-Request verarbeitet
-        // Hier können Sie Benutzerdaten überprüfen und Authentifizierung durchführen
-
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-
-        // Beispielüberprüfung des Benutzernamens und Passworts
-        if (username.equals("admin") && password.equals("pass123")) {
-            // Authentifizierung erfolgreich
-            response.getWriter().println("Login erfolgreich!");
-        } else {
-            // Authentifizierung fehlgeschlagen
-            response.getWriter().println("Login fehlgeschlagen!");
+        public login(){
+            super();
         }
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        // Hier wird der GET-Request verarbeitet
-        response.getWriter().println("GET-Methode ist nicht unterstützt. Verwenden Sie die POST-Methode für den Login.");
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+
+            //weiterleiten zu login.jsp
+        RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+        dispatcher.forward(request, response);
+
+
+        //PrintWriter writer = response.getWriter();
+
+       // writer.println("<!DOCTYPE html>");
+        //writer.println("<html>");
+       // writer.println("<body>");
+        //writer.println("<h1> FC Bayern Munchen </h1>");
+       //writer.println("</body>");
+       // writer.println("</html>");
     }
     public void destroy() {
     }
