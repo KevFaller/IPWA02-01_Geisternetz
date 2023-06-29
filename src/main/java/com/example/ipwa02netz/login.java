@@ -21,18 +21,23 @@ public class login extends HttpServlet {
 
 
         //Testzweck nur fuer Implementierung
-        String user = "admin";
-        String pw = "admin2";
+        String user = "Kevin";
+        String pw = "admin";
 
         if(user.equals(username) && pw.equals(password)){
+            // Begruesung des Users dann auf der index.jsp
+            request.setAttribute("Hallo",user);
+
             RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
             dispatcher.forward(request, response);
+        }else{
+            response.sendRedirect("login");
         }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
-            //weiterleiten zu login.jsp
+        //weiterleiten zu login.jsp
         RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
         dispatcher.forward(request, response);
 
