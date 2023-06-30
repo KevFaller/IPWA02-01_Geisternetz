@@ -19,7 +19,7 @@ public class ConnectionDB {
 
             String userName = "postgres";
             String pw = "Bayern";
-            String url = "jdbc:postgresql://localhost:5113/postgres";
+            String url = "jdbc:postgresql://database:5432/postgres";
 
             Connection connection = DriverManager.getConnection(url, userName, pw);
             System.out.println("****  DB-Connection = true ****");
