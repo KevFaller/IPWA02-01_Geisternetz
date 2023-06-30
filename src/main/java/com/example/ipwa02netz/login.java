@@ -1,6 +1,7 @@
 package com.example.ipwa02netz;
 
 import java.io.*;
+import java.sql.SQLException;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.http.*;
@@ -27,7 +28,14 @@ public class login extends HttpServlet {
         if(user.equals(username) && pw.equals(password)){
             // Begruesung des Users dann auf der index.jsp
             request.setAttribute("Hallo",user);
-
+            try{
+                // Datenbank wird erstellt
+                DatabaseInitialization.initializeDatabase();
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+            // Datenbank wird erstellt
+            DatabaseInitialization.initializeDatabase();
             RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
             dispatcher.forward(request, response);
         }else{
