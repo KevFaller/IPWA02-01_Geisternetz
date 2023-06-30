@@ -9,8 +9,10 @@
 <h1><%= "Ich bin die Startseite" %></h1><br>
 
   <%//so laesst sich javacode schreiben
-      String esel =(String) request.getAttribute("Hallo");
-      out.println("Hallo Lord: " + esel);
+      if (request.getAttribute("Hallo") != null) {
+          String esel = (String) request.getAttribute("Hallo");
+          out.println("Hallo Lord: " + esel);
+      }
   %>
 
 <br/>
