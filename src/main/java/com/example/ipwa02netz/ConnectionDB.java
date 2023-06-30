@@ -6,30 +6,26 @@ import java.sql.SQLException;
 
 public class ConnectionDB {
 
-    private static Connection connection;
+    private static final String DB_URL = "jdbc:postgresql://database:5432/postgres";
+    private static final String USERNAME = "postgres";
+    private static final String PASSWORD = "Bayern";
 
     public static Connection getConnection() {
-        if (connection == null) {
-            createConnection();
-        }
-        return connection;
+        return createConnection();
     }
 
-    private static void createConnection() {
+    private static Connection createConnection() {
+        Connection connection = null;
         try {
             Class.forName("org.postgresql.Driver");
-
-            String userName = "postgres";
-            String pw = "Bayern";
-            String url = "jdbc:postgresql://database:5432/postgres";
-
-            connection = DriverManager.getConnection(url, userName, pw);
-            System.out.println("****  DB-Connection = true ****");
+            connection = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+            MyLogger.logInfo("Connectionfehler 1: " + e.getMessage());
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("Fehlermeldung: " + e.getMessage());
+            MyLogger.logInfo("Connectionfehler 2: " + e.getMessage());
         }
+        return connection;
     }
 }
