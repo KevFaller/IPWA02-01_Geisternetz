@@ -1,6 +1,9 @@
 package com.example.ipwa02netz;
 
 import java.io.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import jakarta.servlet.RequestDispatcher;
@@ -16,30 +19,47 @@ public class login extends HttpServlet {
             super();
         }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        //bekommt es von der login.jsp
-        String username = request.getParameter("username");
+        // Benutzername oder E-Mail-Adresse und Passwort aus dem Request-Objekt abrufen
+        String usernameOrEmail = request.getParameter("username");
         String password = request.getParameter("password");
+        MyLogger.logInfo("Benutzername oder E-Mail: " + usernameOrEmail);
 
+        // Verbindung zur Datenbank herstellen
+        Connection connection = null;
+        try {
+            connection = ConnectionDB.getConnection();
 
-        //Testzweck nur fuer Implementierung
-        String user = "Kevin";
-        String pw = "admin";
+            // Überprüfen, ob der Benutzer in der Datenbank existiert
+            String query = "SELECT * FROM Person WHERE (Vorname = ? OR Mailadresse = ?) AND Password = ?";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, usernameOrEmail);
+            statement.setString(2, usernameOrEmail);
+            statement.setString(3, password);
+            ResultSet resultSet = statement.executeQuery();
 
-        if(user.equals(username) && pw.equals(password)){
-            // Begruesung des Users dann auf der index.jsp
-            request.setAttribute("Hallo",user);
-            try{
-                // Datenbank wird erstellt
-                DatabaseInitialization.initializeDatabase();
-            }catch(Exception e){
-                e.printStackTrace();
+            if (resultSet.next()) {
+                // Benutzer existiert und Passwort ist korrekt
+                String username = resultSet.getString("Vorname");
+                // Weitere Verarbeitung oder Weiterleitung zur Index-Seite
+                request.setAttribute("Hallo", username);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+                dispatcher.forward(request, response);
+            } else {
+                // Benutzer existiert nicht oder Passwort ist falsch
+                response.sendRedirect("register");
+                MyLogger.logInfo("Username="+ usernameOrEmail +" oder Password "+ password+" sind falsch eingegeben worden");
             }
-            // Datenbank wird erstellt
-            DatabaseInitialization.initializeDatabase();
-            RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-            dispatcher.forward(request, response);
-        }else{
-            response.sendRedirect("login");
+        } catch (SQLException e) {
+            MyLogger.logInfo(e.getMessage());
+            // Fehlerbehandlung
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    MyLogger.logInfo(e.getMessage());
+                }
+            }
         }
     }
 

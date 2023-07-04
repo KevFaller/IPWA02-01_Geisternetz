@@ -9,7 +9,7 @@
 <h1>Bitte registriere Dich</h1>
 <p>Register Formular</p><br>
 <form method="post" action="register">
-  <p>Bitte gib dein Vorname ein</p>
+  <p>Bitte gib dein Vorname ein (Vorname = Username)</p>
   <input type="text" id="rVorname" name="rVorname"><br>
   <p>Bitte gib dein Nachname ein</p>
   <input type="text" id="rNachname" name="rNachname"><br>
