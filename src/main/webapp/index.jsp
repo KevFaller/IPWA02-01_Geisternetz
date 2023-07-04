@@ -22,7 +22,7 @@
 <a href="login">Login</a><br>
 
 <!-- Hier wird der Map-Container hinzugefügt -->
-<div id="map" style="height: 400px;"></div>
+<div id="map"></div>
 
 </body>
 </html>
