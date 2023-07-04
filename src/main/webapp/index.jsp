@@ -17,6 +17,11 @@
         out.println("Hallo Lord: " + esel);
     }
 %>
+<%@ page import="com.example.ipwa02netz.DatabaseInitialization" %>
+<%
+    // Datenbank initialisieren
+    DatabaseInitialization.initializeDatabase();
+%>
 
 <br/>
 <a href="login">Login</a><br>
