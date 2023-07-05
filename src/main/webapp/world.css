@@ -14,6 +14,16 @@ header {
     color: white; /* Textfarbe */
 }
 
+#map {
+    width: 70%;
+    height: 70vh;
+    background-color: #66a8d9;
+    border: 2px solid #193366;;
+    border-radius: 5px;
+    margin: 0 auto; /* Hinzugefügt: Zentriert die Karte horizontal */
+    margin-bottom: 20px;
+}
+
 
 footer {
     background-color: #193366; /* Dunkelblauer Hintergrund */
@@ -21,23 +31,4 @@ footer {
     padding: 20px;
     color: white; /* Textfarbe */
     margin-top: auto;
-}
-
-.button-link {
-    background-color: #193366; /* Hintergrundfarbe des Buttons */
-    color: white; /* Textfarbe des Buttons */
-    border: none; /* Kein Rand */
-    padding: 8px 16px; /* Innenabstand des Buttons */
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 14px;
-    cursor: pointer;
-    margin: 5px;
-    border-radius: 4px;
-}
-
-#artikel {
-    font-family: "Arial", sans-serif;
-    color: #003399;
 }

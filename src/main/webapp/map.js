@@ -17,9 +17,6 @@ function initMap() {
         attribution: 'Kartenmaterial &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
         maxZoom: 18,
     }).addTo(map);
-
-    // Beispielmarker hinzufügen
-    L.marker(center).addTo(map).bindPopup("Mein Marker");
 }
 
 // Funktion zum Laden der Karte beim Start der Seite
