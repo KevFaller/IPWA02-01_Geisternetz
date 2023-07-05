@@ -5,9 +5,6 @@ public class sqlScriptCreat {
     public static String getSQLScript() {
         StringBuilder sqlScript = new StringBuilder();
 
-        // Erweiterung postgis erstellen
-        sqlScript.append("CREATE EXTENSION IF NOT EXISTS postgis;\n\n");
-
         // Erstelle die Tabelle "Status"
         sqlScript.append("CREATE TABLE Status (")
                 .append("Status_ID SERIAL PRIMARY KEY,")
@@ -24,7 +21,7 @@ public class sqlScriptCreat {
         // Erstelle die Tabelle "Geisternetz"
         sqlScript.append("CREATE TABLE Geisternetz (")
                 .append("Geisternetz_ID SERIAL PRIMARY KEY,")
-                .append("Geolocation GEOMETRY(Point),")
+                .append("Geolocation VARCHAR(255),")
                 .append("GeschaetzteGroesse VARCHAR(255),")
                 .append("Status_ID INT,")
                 .append("FOREIGN KEY (Status_ID) REFERENCES Status(Status_ID)")
