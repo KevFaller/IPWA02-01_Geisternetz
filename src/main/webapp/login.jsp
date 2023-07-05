@@ -4,19 +4,68 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCUMENTYP html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <title>loginX</title>
-</head>
-    <body>
-        <h1>Login Seite</h1>
-        <form method="post" action="login">
-            <label for="username">Username</label><br>
-            <input type="text" id="username" name="username"><br>
-            <label for="password">Password</label><br>
-            <input type="password" id="password" name="password"><br>
-            <input type="submit" value="Submit">
-        </form>
-        <a href="register">Registrieren</a>
-    </body>
+<header>
+    <title>Login Example</title>
+    <link rel="stylesheet" href="login.css">
+</header>
+<body>
+<span class="background"></span>
+<span class="centering">
+            <form class="my-form">
+                <span class="login-welcome-row">
+                    <img
+                            class="login-welcome"
+                            src="Bild-Bert1.png"
+                    />
+                    <!-- optimize the image in production -->
+                    <h1>LogIn!</h1>
+                </span>
+                <div class="text-field">
+                    <%--@declare id="email"--%><label for="email">Email:</label>
+                    <input
+                            aria-label="Email"
+                            type="email"
+                            id="username"
+                            name="username"
+                            placeholder="Your Email"
+                            required
+                    >
+                    <img
+                            alt="Email Icon"
+                            title="Email Icon"
+                            src="email.svg"
+                    >
+                </div>
+                <div class="text-field">
+                    <label for="password">Password:</label>
+                    <input
+                            id="password"
+                            type="password"
+                            aria-label="Password"
+                            name="password"
+                            placeholder="Your Password"
+                            title="Minimum 6 characters at least 1 Alphabet and 1 Number"
+                            pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$"
+                            required
+                    >
+                    <img
+                            alt="Password Icon"
+                            title="Password Icon"
+                            src="password.svg"
+                    >
+                </div>
+                <input type="submit" class="my-form__button" value="Login" />
+                <div class="my-form__actions">
+                    <div class="my-form__row">
+                        <span>Did you forget your password?</span>
+                        <a href="#" title="Reset Password">Reset Password</a>
+                    </div>
+                    <div class="my-form__signup">
+                        <a href="#" title="Create Account">Create Account</a>
+                    </div>
+                </div>
+            </form>
+        </span>
+<script src="login.js"></script>
+</body>
 </html>
