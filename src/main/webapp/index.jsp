@@ -22,10 +22,6 @@
 %>
 
 <br/>
-<!-- <a href="login">Login</a> -->
-<a href="world">Weltkarte</a><br>
-<a href="login">Login</a>
-
     <button class="button-link" onclick="window.location.href='login'">Login</button>
     <button class="button-link" onclick="window.location.href='world'">Weltkarte</button><br>
 

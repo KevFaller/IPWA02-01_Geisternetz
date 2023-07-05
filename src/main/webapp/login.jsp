@@ -11,7 +11,7 @@
 <body>
 <span class="background"></span>
 <span class="centering">
-            <form class="my-form">
+            <form class="my-form" method="post" action="login">
                 <span class="login-welcome-row">
                     <img
                             class="login-welcome"
@@ -44,9 +44,7 @@
                             aria-label="Password"
                             name="password"
                             placeholder="Your Password"
-                            title="Minimum 6 characters at least 1 Alphabet and 1 Number"
-                            pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$"
-                            required
+
                     >
                     <img
                             alt="Password Icon"
@@ -57,15 +55,13 @@
                 <input type="submit" class="my-form__button" value="Login" />
                 <div class="my-form__actions">
                     <div class="my-form__row">
-                        <span>Did you forget your password?</span>
-                        <a href="#" title="Reset Password">Reset Password</a>
                     </div>
                     <div class="my-form__signup">
-                        <a href="#" title="Create Account">Create Account</a>
+                        <a href="register" title="Create Account">Create Account</a>
                     </div>
                 </div>
             </form>
         </span>
-<script src="login.js"></script>
+<script src=""></script>
 </body>
 </html>

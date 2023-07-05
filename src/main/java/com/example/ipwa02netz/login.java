@@ -19,6 +19,7 @@ public class login extends HttpServlet {
             super();
         }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        MyLogger.logInfo("doPost von login.java wurde aufgerufen");
         // Benutzername oder E-Mail-Adresse und Passwort aus dem Request-Objekt abrufen
         String usernameOrEmail = request.getParameter("username");
         String password = request.getParameter("password");
