@@ -1,24 +1,15 @@
 
-
 .background {
     content: "";
     position: absolute;
-    height: 100vh;
-    width: 100vw;
-    display: grid;
-    place-items: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background-image: url(Bild-Bert1.png);
-    /* https://www.freepik.com/free-vector/gradient
-       -galaxy-background_14658088.htm optimize in prod*/
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-size: auto;
+    /* https://www.freepik.com/free-vector/gradient-galaxy-background_14658088.htm optimize in prod*/
     background-size: cover;
-
+    background-repeat: no-repeat;
+    z-index: -1;
 }
 
-#articel{
-    padding: 15%;
-    margin: 15% 0;
-    background-color: #717978;
-}

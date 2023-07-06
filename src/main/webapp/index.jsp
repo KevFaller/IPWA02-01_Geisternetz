@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
+<div class="background"></div>
 <header>
 <h1><%= "Geisternetze" %></h1><br>
 
@@ -24,9 +25,12 @@
 <br/>
     <button class="button-link" onclick="window.location.href='login'">Login</button>
     <button class="button-link" onclick="window.location.href='world'">Weltkarte</button><br>
+    <button class="button-link" onclick="window.location.href='netz'">Geisternetze</button><br>
+    <button class="button-link" onclick="window.location.href='netzBearbeiten'">Geisternetz-Melden/Bergen</button><br>
 
 </header>
-</div id=artikel>
+
+</div class="text-field">
 <p>Geisternetze sind ein ernstes Problem, das die Meeres<a href="world">Welt</a> plagt. Diese verlorenen oder absichtlich zurückgelassenen Fischernetze können jahrelang in den Ozeanen treiben und verursachen erhebliche Schäden für die marinen Ökosysteme.</p>
 <p>Einer der Hauptgründe ist, dass sie zu einer unsichtbaren Falle für Meereslebewesen werden. Fische, Meeressäuger, Schildkröten und andere Tiere können sich in den Netzen verfangen und dadurch ertrinken oder schwer verletzt werden. Dies führt zu einem dramatischen Rückgang der Artenvielfalt und einer Störung des natürlichen Gleichgewichts in den Ozeanen.</p>
 <p>Ein weiteres Problem ist die langfristige Verschmutzung der Meeresumwelt. Geisternetze bestehen oft aus nicht biologisch abbaubaren Materialien wie Kunststoff, die Jahrzehnte oder sogar Jahrhunderte benötigen, um zu zerfallen. Währenddessen setzen sie Mikroplastikpartikel frei, die von Meeresorganismen aufgenommen werden und letztendlich in die Nahrungskette gelangen können. Dies hat weitreichende Auswirkungen auf die Gesundheit der Tiere und letztendlich auch auf den Menschen.</p>
