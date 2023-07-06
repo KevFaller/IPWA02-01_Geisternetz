@@ -8,11 +8,17 @@
     function toggleNetzDropdown() {
       var statusSelect = document.getElementById("status");
       var netzDropdown = document.getElementById("netz");
+      var gpsField = document.getElementById("gpsField");
+      var groeseField = document.getElementById("groeseField");
 
-      if (statusSelect.value === "verschollen" || statusSelect.value === "bergen") {
-        netzDropdown.style.display = "block";
-      } else {
+      if (statusSelect.value === "melden") {
         netzDropdown.style.display = "none";
+        gpsField.style.display = "block";
+        groeseField.style.display = "block";
+      } else {
+        netzDropdown.style.display = "block";
+        gpsField.style.display = "none";
+        groeseField.style.display = "none";
       }
     }
   </script>
@@ -37,29 +43,44 @@
                 <div id="netz" style="display: none;">
                     <label for="netz">Netz:</label>
                     <select name="netz" id="netzDropdown">
-                        <%
-                          // Instanz der netzArrayCreat-Klasse erstellen
-                          netzArrayCreat netzArray = new netzArrayCreat();
-                          // Geisternetz-Array abrufen
+                        <% netzArrayCreat netzArray = new netzArrayCreat();
                           String[] geisternetzArray = netzArray.getGeisternetzArray();
-                          // Schleife über das Geisternetz-Array
-                          for (String netz : geisternetzArray) {
-                        %>
+                          for (String netz : geisternetzArray) { %>
                         <option value="<%= netz %>"><%= netz %></option>
                         <% } %>
                     </select>
                 </div>
-            </div>
 
-            <input type="submit" class="my-form__button" value="Bearbeitung" />
+                <div class="text-field" id="gpsField" style="display: none;">
+                    <br><label for="inputGPS">GPS Daten:</label>
+                    <input
+                            aria-label="GPS"
+                            type="POINT"
+                            id="inputGPS"
+                            name="inputGPS"
+                            placeholder="z.B. 34.0000 15.0000"
+                            required
+                    >
+               </div>
+
+               <div class="text-field" id="groeseField" style="display: none;">
+                    <br><label for="inputGroese">Geschaetzte Größe:</label>
+                    <input
+                            aria-label="qm"
+                            type="text"
+                            id="inputGroese"
+                            name="inputGroese"
+                            placeholder="z.B. 4x4qm"
+                            required
+                    >
+               </div>
+            </div>
+            <input type="submit" class="my-form__button" value="Bearbeitung">
             <div class="my-form__actions">
                 <div class="my-form__row">
                 </div>
             </div>
         </form>
-        <script>
-            // JavaScript-Code hier einfügen, falls benötigt
-        </script>
     </span>
 </body>
 </html>
