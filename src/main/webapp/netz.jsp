@@ -9,7 +9,7 @@
 
 <body>
 <h1>Auflistung der geisternetze</h1>
-<p>Register Formular</p><br>
+<button class="button-link" onclick="window.location.href='netzBearbeiten'">Geisternetz-Melden/Bergen</button><br>
 
 
 <body>
@@ -29,7 +29,7 @@
             <% String[] deviceInfo = data.split(","); %>
             <tr>
                 <% for (String info : deviceInfo) { %>
-                <td><%= info.split(":")[1].trim() %></td>
+                <td><%= info.trim() %></td>
                 <% } %>
             </tr>
             <% } %>
