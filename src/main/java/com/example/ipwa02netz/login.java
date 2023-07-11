@@ -10,6 +10,7 @@ import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpSession;
 
 
 @WebServlet("/login")
@@ -41,6 +42,12 @@ public class login extends HttpServlet {
             if (resultSet.next()) {
                 // Benutzer existiert und Passwort ist korrekt
                 String username = resultSet.getString("Vorname");
+
+                // Sitzungsvariable erstellen und setzen
+                HttpSession session = request.getSession();
+                session.setAttribute("username", username);
+                MyLogger.logInfo("Sitzungsvariable wurde gesetzt");
+
                 // Weitere Verarbeitung oder Weiterleitung zur Index-Seite
                 request.setAttribute("Hallo", username);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
@@ -62,6 +69,7 @@ public class login extends HttpServlet {
                 }
             }
         }
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -73,5 +81,23 @@ public class login extends HttpServlet {
 
     }
     public void destroy() {
+    }
+
+    //abfrage ob sich eingeloggt wurde
+    public boolean checkLoginStatus(HttpServletRequest request) {
+        // Sitzung abrufen
+        HttpSession session = request.getSession();
+
+        // Überprüfen, ob die Sitzungsvariable vorhanden ist
+        if (session.getAttribute("username") != null) {
+            // Der Benutzer ist eingeloggt
+            String username = (String) session.getAttribute("username");
+            MyLogger.logInfo("Der Benutzer " + username + " ist eingeloggt.");
+            return true;
+        } else {
+            // Der Benutzer ist nicht eingeloggt
+            MyLogger.logInfo("Der Benutzer ist nicht eingeloggt.");
+            return false;
+        }
     }
 }

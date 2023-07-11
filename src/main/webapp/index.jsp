@@ -6,7 +6,8 @@
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-<div class="background"></div>
+<span class="background"></span>
+<span class="centering">
 <header>
 <h1><%= "Geisternetze" %></h1><br>
 
@@ -30,14 +31,18 @@
 
 </header>
 
-</div class="text-field">
+<form class="my-form">
 <p>Geisternetze sind ein ernstes Problem, das die Meeres<a href="world">Welt</a> plagt. Diese verlorenen oder absichtlich zurückgelassenen Fischernetze können jahrelang in den Ozeanen treiben und verursachen erhebliche Schäden für die marinen Ökosysteme.</p>
 <p>Einer der Hauptgründe ist, dass sie zu einer unsichtbaren Falle für Meereslebewesen werden. Fische, Meeressäuger, Schildkröten und andere Tiere können sich in den Netzen verfangen und dadurch ertrinken oder schwer verletzt werden. Dies führt zu einem dramatischen Rückgang der Artenvielfalt und einer Störung des natürlichen Gleichgewichts in den Ozeanen.</p>
 <p>Ein weiteres Problem ist die langfristige Verschmutzung der Meeresumwelt. Geisternetze bestehen oft aus nicht biologisch abbaubaren Materialien wie Kunststoff, die Jahrzehnte oder sogar Jahrhunderte benötigen, um zu zerfallen. Währenddessen setzen sie Mikroplastikpartikel frei, die von Meeresorganismen aufgenommen werden und letztendlich in die Nahrungskette gelangen können. Dies hat weitreichende Auswirkungen auf die Gesundheit der Tiere und letztendlich auch auf den Menschen.</p>
 <p>Es ist daher von größter Bedeutung, dass die <a href="world">Welt</a> sich gemeinsam bemüht, dieses Problem anzugehen. Maßnahmen wie die verstärkte Überwachung der Fischereiaktivitäten, die Förderung von umweltfreundlicheren Fischereimethoden und die verstärkte Aufräumaktionen zur Entfernung von Geisternetzen aus den Ozeanen sind dringend erforderlich. Nur durch eine kollektive Anstrengung kann die <a href="world">Welt</a> den Schutz der Meeresumwelt und die Erhaltung der Artenvielfalt gewährleisten.</p>
-</div>
+<div class="my-form__actions">
+                <div class="my-form__row">
+                </div>
+            </div>
+</form>
 
-
+ </span>
 <footer>
 
 </footer>

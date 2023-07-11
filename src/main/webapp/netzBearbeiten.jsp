@@ -15,15 +15,28 @@
         netzDropdown.style.display = "none";
         gpsField.style.display = "block";
         groeseField.style.display = "block";
-      } else {
+      } else if (statusSelect.value === "bergen"){
         netzDropdown.style.display = "block";
         gpsField.style.display = "none";
         groeseField.style.display = "none";
+      }else if (statusSelect.value === "verschollen"){
+          netzDropdown.style.display = "block";
+          gpsField.style.display = "none";
+          groeseField.style.display = "none";
+      }else if (statusSelect.value === "Bergung bevorstehend"){
+          netzDropdown.style.display = "block";
+          gpsField.style.display = "none";
+          groeseField.style.display = "none";
       }
     }
+    window.addEventListener('DOMContentLoaded', toggleNetzDropdown);
   </script>
 </head>
 <body>
+<button class="button-link" onclick="window.location.href='index'">Startseite</button>
+<button class="button-link" onclick="window.location.href='login'">Login</button>
+<button class="button-link" onclick="window.location.href='world'">Weltkarte</button><br>
+<button class="button-link" onclick="window.location.href='netz'">Geisternetze</button><br>
 <span class="background"></span>
 <span class="centering">
         <form class="my-form" method="post" action="netzBearbeiten">
@@ -38,6 +51,7 @@
                     <option value="melden">Melden</option>
                     <option value="bergen">Bergen</option>
                     <option value="verschollen">Verschollen</option>
+                    <option value="Bergung bevorstehend">Bergung bevorstehend</option>
                 </select><br>
 
                 <div id="netz" style="display: none;">

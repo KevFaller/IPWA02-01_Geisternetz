@@ -2,4 +2,9 @@
 
 Bug_Liste
 
-- wenn auf der/netzBearbeiten seite den status
+
+
+
+
+toDO
+Index.java erstellen, damit man als zur startseite kommt
