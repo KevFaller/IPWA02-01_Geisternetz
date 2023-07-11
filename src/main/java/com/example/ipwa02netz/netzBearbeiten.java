@@ -120,10 +120,9 @@ public class netzBearbeiten extends HttpServlet {
 
 
         } else if (status != null && status.equals("verschollen")) {
-            login Login = new login();
-            boolean logStatus = Login.checkLoginStatus(request);
 
-            if(logStatus == true){
+                // Aufgabe: Als beliebige Person soll man ein Netz als verschollen melde koennen daher kein Login ueberpruefung
+
                 // Netz aus dem Formular erhalten
                 String selectedNetz = request.getParameter("netz");
 
@@ -168,10 +167,7 @@ public class netzBearbeiten extends HttpServlet {
                     }
                 }
 
-            }else{
-                RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
-                dispatcher.forward(request, response);
-            }
+
 
         } else if (status != null && status.equals("Bergung bevorstehend")) {
             login Login = new login();

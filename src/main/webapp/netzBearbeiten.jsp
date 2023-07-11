@@ -14,19 +14,27 @@
       if (statusSelect.value === "melden") {
         netzDropdown.style.display = "none";
         gpsField.style.display = "block";
+        gpsField.required = true;
+        groeseField.required=true;
         groeseField.style.display = "block";
       } else if (statusSelect.value === "bergen"){
         netzDropdown.style.display = "block";
         gpsField.style.display = "none";
+        gpsField.required = false;
+          groeseField.required=false;
         groeseField.style.display = "none";
       }else if (statusSelect.value === "verschollen"){
           netzDropdown.style.display = "block";
           gpsField.style.display = "none";
+          gpsField.required = false;
+          groeseField.required=false;
           groeseField.style.display = "none";
       }else if (statusSelect.value === "Bergung bevorstehend"){
           netzDropdown.style.display = "block";
           gpsField.style.display = "none";
           groeseField.style.display = "none";
+          gpsField.required = false;
+          groeseField.required=false;
       }
     }
     window.addEventListener('DOMContentLoaded', toggleNetzDropdown);
