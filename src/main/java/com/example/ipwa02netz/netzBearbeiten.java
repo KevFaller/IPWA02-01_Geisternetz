@@ -12,6 +12,8 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @WebServlet("/netzBearbeiten")
 public class netzBearbeiten extends HttpServlet {
@@ -72,11 +74,17 @@ public class netzBearbeiten extends HttpServlet {
             if(logStatus == true){
                 // Netz aus dem Formular erhalten
                 String selectedNetz = request.getParameter("netz");
-                MyLogger.logInfo("Netz aus dem Formular erhalten");
+                MyLogger.logInfo("selectedNetz= "+selectedNetz);
+                Pattern pattern = Pattern.compile("Geolocation: POINT\\((.*?)\\),");
+                Matcher matcher = pattern.matcher(selectedNetz);
+                String gpsData = "";
+                if (matcher.find()) {
+                    gpsData = matcher.group(1);
+                    gpsData = "POINT(" + gpsData + ")";
+                }
+
                 // SQL-Statement zum Löschen des Netzes erstellen
-                StringBuilder deleteSql = new StringBuilder();
-                deleteSql.append("DELETE FROM Geisternetz WHERE Geolocation = ?;");
-                MyLogger.logInfo("SQL-Statement zum Löschen des Netzes erstellen: " + deleteSql.append("DELETE FROM Geisternetz WHERE Geolocation = ?;"));
+                String deleteSql = "DELETE FROM Geisternetz WHERE Geolocation = ?";
                 // Datenbankverbindung herstellen
                 Connection connection = null;
                 PreparedStatement deleteStatement = null;
@@ -85,8 +93,9 @@ public class netzBearbeiten extends HttpServlet {
                     connection = ConnectionDB.getConnection();
 
                     // PreparedStatement erstellen und das SQL-Statement setzen
-                    deleteStatement = connection.prepareStatement(deleteSql.toString());
-                    deleteStatement.setString(1, selectedNetz);
+                    deleteStatement = connection.prepareStatement(deleteSql);
+                    deleteStatement.setString(1, gpsData);
+                    MyLogger.logInfo("Delete SQL Statement: " + deleteStatement.toString());
 
                     // SQL-Statement ausführen
                     deleteStatement.executeUpdate();
@@ -123,28 +132,35 @@ public class netzBearbeiten extends HttpServlet {
 
                 // Aufgabe: Als beliebige Person soll man ein Netz als verschollen melde koennen daher kein Login ueberpruefung
 
-                // Netz aus dem Formular erhalten
-                String selectedNetz = request.getParameter("netz");
+            // Netz aus dem Formular erhalten
+            String selectedNetz = request.getParameter("netz");
+            MyLogger.logInfo("selectedNetz= " + selectedNetz);
 
-                // SQL-Statement zum Aktualisieren des Status auf "verschollen" erstellen
-                StringBuilder updateSql = new StringBuilder();
-                updateSql.append("UPDATE Geisternetz SET Status_ID = (SELECT Status_ID FROM Status WHERE Statusname = 'Verschollen') ")
-                        .append("WHERE Geolocation = ?;");
+// Extrahiere die Geolocation aus dem ausgewählten Netz
+            Pattern pattern = Pattern.compile("Geolocation: POINT\\((.*?)\\),");
+            Matcher matcher = pattern.matcher(selectedNetz);
+            String gpsData = "";
+            if (matcher.find()) {
+                gpsData = matcher.group(1);
+                gpsData = "POINT(" + gpsData + ")";
+            }
 
-                // Datenbankverbindung herstellen
-                Connection connection = null;
-                PreparedStatement updateStatement = null;
+// SQL-Statement zum Aktualisieren des Status auf "verschollen" erstellen
+            String updateSql = "UPDATE Geisternetz SET Status_ID = (SELECT Status_ID FROM Status WHERE Statusname = 'Verschollen') WHERE Geolocation = ?";
+// Datenbankverbindung herstellen
+            Connection connection = null;
+            PreparedStatement updateStatement = null;
 
-                try {
-                    connection = ConnectionDB.getConnection();
+            try {
+                connection = ConnectionDB.getConnection();
 
-                    // PreparedStatement erstellen und das SQL-Statement setzen
-                    updateStatement = connection.prepareStatement(updateSql.toString());
-                    updateStatement.setString(1, selectedNetz);
+                // PreparedStatement erstellen und das SQL-Statement setzen
+                updateStatement = connection.prepareStatement(updateSql);
+                updateStatement.setString(1, gpsData);
+                MyLogger.logInfo("Update SQL Statement: " + updateStatement.toString());
 
-                    // SQL-Statement ausführen
-                    updateStatement.executeUpdate();
-
+                // SQL-Statement ausführen
+                updateStatement.executeUpdate();
                 } catch (SQLException e) {
                     // Fehlerbehandlung bei SQL-Fehlern
                     MyLogger.logInfo(e.getMessage());
@@ -176,12 +192,19 @@ public class netzBearbeiten extends HttpServlet {
             if(logStatus == true){
                 // Netz aus dem Formular erhalten
                 String selectedNetz = request.getParameter("netz");
+                MyLogger.logInfo("selectedNetz= " + selectedNetz);
 
-                // SQL-Statement zum Aktualisieren des Status auf "Bergung bevorstehend" erstellen
-                StringBuilder updateSql = new StringBuilder();
-                updateSql.append("UPDATE Geisternetz SET Status_ID = (SELECT Status_ID FROM Status WHERE Statusname = 'Verschollen') ")
-                        .append("WHERE Geolocation = ?;");
+                // Extrahiere die Geolocation aus dem ausgewählten Netz
+                Pattern pattern = Pattern.compile("Geolocation: POINT\\((.*?)\\),");
+                Matcher matcher = pattern.matcher(selectedNetz);
+                String gpsData = "";
+                if (matcher.find()) {
+                    gpsData = matcher.group(1);
+                    gpsData = "POINT(" + gpsData + ")";
+                }
 
+                // SQL-Statement zum Aktualisieren des Status auf "verschollen" erstellen
+                String updateSql = "UPDATE Geisternetz SET Status_ID = (SELECT Status_ID FROM Status WHERE Statusname = 'Verschollen') WHERE Geolocation = ?";
                 // Datenbankverbindung herstellen
                 Connection connection = null;
                 PreparedStatement updateStatement = null;
@@ -190,8 +213,9 @@ public class netzBearbeiten extends HttpServlet {
                     connection = ConnectionDB.getConnection();
 
                     // PreparedStatement erstellen und das SQL-Statement setzen
-                    updateStatement = connection.prepareStatement(updateSql.toString());
-                    updateStatement.setString(1, selectedNetz);
+                    updateStatement = connection.prepareStatement(updateSql);
+                    updateStatement.setString(1, gpsData);
+                    MyLogger.logInfo("Update SQL Statement: " + updateStatement.toString());
 
                     // SQL-Statement ausführen
                     updateStatement.executeUpdate();

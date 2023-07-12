@@ -20,21 +20,21 @@
       } else if (statusSelect.value === "bergen"){
         netzDropdown.style.display = "block";
         gpsField.style.display = "none";
-        gpsField.required = false;
-          groeseField.required=false;
+        // gpsField.required = false;
+        //   groeseField.required=false;
         groeseField.style.display = "none";
       }else if (statusSelect.value === "verschollen"){
           netzDropdown.style.display = "block";
           gpsField.style.display = "none";
-          gpsField.required = false;
-          groeseField.required=false;
+          // gpsField.required = false;
+          // groeseField.required=false;
           groeseField.style.display = "none";
       }else if (statusSelect.value === "Bergung bevorstehend"){
           netzDropdown.style.display = "block";
           gpsField.style.display = "none";
           groeseField.style.display = "none";
-          gpsField.required = false;
-          groeseField.required=false;
+          // gpsField.required = false;
+          // groeseField.required=false;
       }
     }
     window.addEventListener('DOMContentLoaded', toggleNetzDropdown);
@@ -81,7 +81,6 @@
                             id="inputGPS"
                             name="inputGPS"
                             placeholder="z.B. 34.0000 15.0000"
-                            required
                     >
                </div>
 
@@ -93,7 +92,6 @@
                             id="inputGroese"
                             name="inputGroese"
                             placeholder="z.B. 4x4qm"
-                            required
                     >
                </div>
             </div>
