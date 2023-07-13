@@ -49,7 +49,7 @@ public class netzArrayCreat {
                     bergungZugewiesenVorname = "Noch nicht";
                     bergungZugewiesenNachname = "zugewiesen";
                 }
-                
+
                 String data = "Geolocation: " + geolocation +
                         ", Größe: " + groesse +
                         ", Status: " + status +
