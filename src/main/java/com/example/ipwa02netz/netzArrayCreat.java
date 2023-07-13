@@ -45,6 +45,11 @@ public class netzArrayCreat {
                 String bergungZugewiesenVorname = resultSet.getString("BergungZugewiesenVorname");
                 String bergungZugewiesenNachname = resultSet.getString("BergungZugewiesenNachname");
 
+                if (bergungZugewiesenVorname == null && bergungZugewiesenNachname == null) {
+                    bergungZugewiesenVorname = "Noch nicht";
+                    bergungZugewiesenNachname = "zugewiesen";
+                }
+                
                 String data = "Geolocation: " + geolocation +
                         ", Größe: " + groesse +
                         ", Status: " + status +
