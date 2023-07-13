@@ -22,6 +22,8 @@
                 <th>Geolocation</th>
                 <th>Geschätzte Größe</th>
                 <th>Status</th>
+                <th>Gemeldet von</th>
+                <th>Bergung zugewiesen</th>
             </tr>
         </thead>
         <tbody>

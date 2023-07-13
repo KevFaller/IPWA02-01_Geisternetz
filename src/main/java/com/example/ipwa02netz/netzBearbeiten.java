@@ -188,6 +188,7 @@ public class netzBearbeiten extends HttpServlet {
         } else if (status != null && status.equals("Bergung bevorstehend")) {
             login Login = new login();
             boolean logStatus = Login.checkLoginStatus(request);
+            MyLogger.logInfo("netzBearbeiten-Bergung bevorstehend");
 
             if(logStatus == true){
                 // Netz aus dem Formular erhalten
@@ -202,19 +203,26 @@ public class netzBearbeiten extends HttpServlet {
                     gpsData = matcher.group(1);
                     gpsData = "POINT(" + gpsData + ")";
                 }
+                MyLogger.logInfo("gpsData= " + gpsData);
 
-                // SQL-Statement zum Aktualisieren des Status auf "verschollen" erstellen
-                String updateSql = "UPDATE Geisternetz SET Status_ID = (SELECT Status_ID FROM Status WHERE Statusname = 'Verschollen') WHERE Geolocation = ?";
-                // Datenbankverbindung herstellen
+                // Benutzernamen aus der Sitzung abrufen
+                HttpSession session = request.getSession();
+                String username = (String) session.getAttribute("username");
+                MyLogger.logInfo("Netz wurde von Benutzer " + username + " auf Bergung bevorstehend gestellt");
+
+
+                // SQL-Statement zum Aktualisieren des Status auf "Bergung bevorstehend" und Eintragen des Benutzers erstellen
+                String updateSql = "UPDATE Geisternetz SET Status_ID = (SELECT Status_ID FROM Status WHERE Statusname = 'Bergung bevorstehend'), BergungZugewiesen = (SELECT Person_ID FROM Person WHERE Vorname = ?) WHERE Geolocation = ?";               // Datenbankverbindung herstellen
                 Connection connection = null;
                 PreparedStatement updateStatement = null;
-
+                MyLogger.logInfo("netzBearbeiten-Bergung bevorstehend:  DB verbindung erstellt");
                 try {
                     connection = ConnectionDB.getConnection();
 
                     // PreparedStatement erstellen und das SQL-Statement setzen
                     updateStatement = connection.prepareStatement(updateSql);
-                    updateStatement.setString(1, gpsData);
+                    updateStatement.setString(1, username);
+                    updateStatement.setString(2, gpsData);
                     MyLogger.logInfo("Update SQL Statement: " + updateStatement.toString());
 
                     // SQL-Statement ausführen

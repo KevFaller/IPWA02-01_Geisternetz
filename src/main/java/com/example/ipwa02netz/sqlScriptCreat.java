@@ -18,21 +18,6 @@ public class sqlScriptCreat {
                 .append("('Geborgen'), ")
                 .append("('Verschollen');");
 
-        // Erstelle die Tabelle "Geisternetz"
-        sqlScript.append("CREATE TABLE Geisternetz (")
-                .append("Geisternetz_ID SERIAL PRIMARY KEY,")
-                .append("Geolocation VARCHAR(255),")
-                .append("GeschaetzteGroesse VARCHAR(255),")
-                .append("Status_ID INT,")
-                .append("FOREIGN KEY (Status_ID) REFERENCES Status(Status_ID)")
-                .append(");\n");
-
-        // Füge Datensätze in die Tabelle "Geisternetz" ein
-        sqlScript.append("INSERT INTO Geisternetz (Geolocation, GeschaetzteGroesse, Status_ID) VALUES ")
-                .append("('POINT(35.0000 15.0000)', '3x3qm', 1), ")
-                .append("('POINT(0.0000 -25.0000)', '4x4qm', 2), ")
-                .append("('POINT(54.0000 3.0000)', '5x5qm', 4);\n");
-
         // Erstelle die Tabelle "Person"
         sqlScript.append("CREATE TABLE Person (")
                 .append("Person_ID SERIAL PRIMARY KEY,")
@@ -46,6 +31,27 @@ public class sqlScriptCreat {
         // Füge Datensätze in die Tabelle "Person" ein
         sqlScript.append("INSERT INTO Person (Vorname, Nachname, Mailadresse, Password, Telefonnummer) VALUES ")
                 .append("('admin', 'admin', 'admin@admin.de', 'admin', '123456');");
+
+        // Erstelle die Tabelle "Geisternetz"
+        sqlScript.append("CREATE TABLE Geisternetz (")
+                .append("Geisternetz_ID SERIAL PRIMARY KEY,")
+                .append("Geolocation VARCHAR(255),")
+                .append("GeschaetzteGroesse VARCHAR(255),")
+                .append("Status_ID INT,")
+                .append("GemeldetVon INT,")
+                .append("BergungZugewiesen INT DEFAULT NULL,")
+                .append("FOREIGN KEY (Status_ID) REFERENCES Status(Status_ID),")
+                .append("FOREIGN KEY (GemeldetVon) REFERENCES Person(Person_ID),")
+                .append("FOREIGN KEY (BergungZugewiesen) REFERENCES Person(Person_ID)")
+                .append(");\n");
+
+// Füge Datensätze in die Tabelle "Geisternetz" ein
+        sqlScript.append("INSERT INTO Geisternetz (Geolocation, GeschaetzteGroesse, Status_ID, GemeldetVon, BergungZugewiesen) VALUES ")
+                .append("('POINT(35.0000 15.0000)', '3x3qm', 1, 1, NULL), ")
+                .append("('POINT(0.0000 -25.0000)', '4x4qm', 2, 1, NULL), ")
+                .append("('POINT(54.0000 3.0000)', '5x5qm', 4, 1, NULL);\n");
+
+
 
         // Erstelle die Tabelle "Bergung"
         sqlScript.append("CREATE TABLE Bergung (")
